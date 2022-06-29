@@ -9,18 +9,26 @@ import (
 	"time"
 
 	"github.com/AliAkberAakash/microservices-with-go/handler"
+	"github.com/gorilla/mux"
 )
 
 func main() {
 
 	logger := log.New(os.Stdout, "product-api", log.LstdFlags)
+	productHandler := handler.NewProduct(logger)
 
-	helloHandler := handler.NewHello(logger)
-	goodbyeHandler := handler.NewGoodBye(logger)
+	serveMux := mux.NewRouter()
 
-	serveMux := http.NewServeMux()
-	serveMux.Handle("/", helloHandler)
-	serveMux.Handle("/goodbye", goodbyeHandler)
+	getRouter := serveMux.Methods(http.MethodGet).Subrouter()
+	getRouter.HandleFunc("/", productHandler.GetProducts)
+
+	putRouter := serveMux.Methods(http.MethodPut).Subrouter()
+	putRouter.HandleFunc("/{id:[0-9]+}", productHandler.UpdateProduct)
+	putRouter.Use(productHandler.MiddlewareValidateProduct)
+
+	postRouter := serveMux.Methods(http.MethodPost).Subrouter()
+	postRouter.HandleFunc("/", productHandler.AddProduct)
+	postRouter.Use(productHandler.MiddlewareValidateProduct)
 
 	server := &http.Server{
 		Addr:         ":8000",
@@ -31,6 +39,7 @@ func main() {
 	}
 
 	go func() {
+		logger.Println("Starting server at port:", "8000")
 		err := server.ListenAndServe()
 		if err != nil {
 			logger.Fatal("Error")
