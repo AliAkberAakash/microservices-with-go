@@ -1,7 +1,24 @@
+// Package Classification of Product API
+//
+// Documentation for Product API
+//
+//	Schemes http
+//	BasePath: /
+//	Version: 1.0.0
+//
+//	Consumes:
+//	- application/json
+//
+//	Produces:
+//	- application/json
+//
+// swagger:meta
+
 package handler
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -18,6 +35,9 @@ func NewProduct(logger *log.Logger) *Product {
 	return &Product{logger: logger}
 }
 
+// swagger:route /GET products products listProducts
+// Returns a list of all products
+
 func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 
 	p.logger.Println("Gettinig all products")
@@ -30,6 +50,7 @@ func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 		http.Error(rw, "Unable to parse data", http.StatusInternalServerError)
 	}
 }
+
 func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
 
 	p.logger.Println("Adding product")
@@ -72,7 +93,19 @@ func (p *Product) MiddlewareValidateProduct(next http.Handler) http.Handler {
 		err := product.FromJson(r.Body)
 
 		if err != nil {
+			p.logger.Println("[Error] deserializing product")
 			http.Error(rw, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		err = product.Validate()
+		if err != nil {
+			p.logger.Println("[Error] deserializing product")
+			http.Error(
+				rw,
+				fmt.Sprintf("Error validating product: %s", err.Error()),
+				http.StatusBadRequest,
+			)
 			return
 		}
 
