@@ -13,7 +13,6 @@
 //	- application/json
 //
 // swagger:meta
-
 package handler
 
 import (
@@ -27,6 +26,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// A list of prducts returns in the response
+// swagger:response productsResponse
+type productsResponse struct {
+	// All products in the system
+	// in: body
+	Body []data.Product
+}
+
 type Product struct {
 	logger *log.Logger
 }
@@ -35,9 +42,15 @@ func NewProduct(logger *log.Logger) *Product {
 	return &Product{logger: logger}
 }
 
-// swagger:route /GET products products listProducts
-// Returns a list of all products
-
+// swagger:route GET /products products listProducts
+//
+//	Returns a list of all products
+//
+// responses:
+//	200: productsResponse
+//
+//
+//
 func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 
 	p.logger.Println("Gettinig all products")
