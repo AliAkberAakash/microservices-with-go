@@ -1,4 +1,4 @@
-// Package Classification of Product API
+// Package Classification Product API
 //
 // Documentation for Product API
 //
@@ -62,6 +62,32 @@ func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(rw, "Unable to parse data", http.StatusInternalServerError)
 	}
+}
+
+func (p *Product) DeleteProduct(rw http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		http.Error(rw, "Invalid id", http.StatusBadRequest)
+		return
+	}
+
+	p.logger.Println("Deleting product")
+
+	err = data.DeleteProduct(id)
+
+	if err == data.ErrorProductNotFound {
+		http.Error(rw, "Product not found", http.StatusNotFound)
+		return
+	}
+
+	if err != nil {
+		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 }
 
 func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {

@@ -70,6 +70,24 @@ func UpdateProduct(id int, p *Product) error {
 	return nil
 }
 
+func DeleteProduct(id int) error {
+
+	_, index, err := findProduct(id)
+
+	if err != nil {
+		return err
+	}
+
+	productList = remove(productList, index)
+
+	return nil
+}
+
+func remove(s []*Product, i int) []*Product {
+	s[i] = s[len(s)-1]
+	return s[:len(s)-1]
+}
+
 func getNextId() int {
 	lp := productList[len(productList)-1]
 	return lp.ID + 1
