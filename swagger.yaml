@@ -28,10 +28,10 @@ info:
     Documentation for Product API
 
     Schemes http
-  title: of Product API
+  title: Product API
   version: 1.0.0
 paths:
-  /products:
+  /:
     get:
       description: Returns a list of all products
       operationId: listProducts
@@ -40,9 +40,42 @@ paths:
           $ref: '#/responses/productsResponse'
       tags:
       - products
+    post:
+      description: |-
+        Add a new product
+        Throws error if data is invalid
+      operationId: addProduct
+      responses:
+        "200":
+          $ref: '#/responses/noResponse'
+      tags:
+      - products
+  /{id}:
+    delete:
+      description: |-
+        Deletes product with given id
+        Throws error is product not found
+      operationId: deleteProduct
+      responses:
+        "200":
+          $ref: '#/responses/noResponse'
+      tags:
+      - products
+    put:
+      description: |-
+        Update product with given id
+        Throws error if data is invalid
+      operationId: updateProduct
+      responses:
+        "200":
+          $ref: '#/responses/noResponse'
+      tags:
+      - products
 produces:
 - application/json
 responses:
+  noResponse:
+    description: Empty response
   productsResponse:
     description: A list of prducts returns in the response
     schema:

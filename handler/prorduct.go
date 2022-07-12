@@ -34,6 +34,11 @@ type productsResponse struct {
 	Body []data.Product
 }
 
+// Empty response
+// swagger:response noResponse
+type noRespnse struct {
+}
+
 type Product struct {
 	logger *log.Logger
 }
@@ -42,14 +47,12 @@ func NewProduct(logger *log.Logger) *Product {
 	return &Product{logger: logger}
 }
 
-// swagger:route GET /products products listProducts
+// swagger:route GET / products listProducts
 //
 //	Returns a list of all products
 //
 // responses:
 //	200: productsResponse
-//
-//
 //
 func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 
@@ -64,6 +67,14 @@ func (p *Product) GetProducts(rw http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// swagger:route DELETE /{id} products deleteProduct
+//
+//	Deletes product with given id
+//	Throws error is product not found
+//
+// responses:
+//	200: noResponse
+//
 func (p *Product) DeleteProduct(rw http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
@@ -90,6 +101,14 @@ func (p *Product) DeleteProduct(rw http.ResponseWriter, r *http.Request) {
 
 }
 
+// swagger:route POST / products addProduct
+//
+//	Add a new product
+//	Throws error if data is invalid
+//
+// responses:
+//	200: noResponse
+//
 func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
 
 	p.logger.Println("Adding product")
@@ -98,6 +117,14 @@ func (p *Product) AddProduct(rw http.ResponseWriter, r *http.Request) {
 	data.AddProduct(product)
 }
 
+// swagger:route PUT /{id} products updateProduct
+//
+//	Update product with given id
+//	Throws error if data is invalid
+//
+// responses:
+//	200: noResponse
+//
 func (p *Product) UpdateProduct(rw http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)

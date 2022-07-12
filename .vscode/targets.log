@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Thu Jul  7 21:47:43 2022
+# Make data base, printed on Tue Jul 12 07:25:27 2022
 
 # Variables
 
@@ -15,8 +16,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -36,21 +35,15 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
 __CFBundleIdentifier = com.microsoft.VSCode
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/lg/9hh5tww51wsfcydm5nl8tdrh0000gn/T/vscode-ipc-80873031-6a63-4e36-8a52-df294bff0662.sock
 # environment
 VSCODE_CWD = /
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # environment
-PATH = /opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/bs274/flutter/bin:/Users/bs274/sonar-scanner/sonar-scanner-macosx/bin:/Users/bs274/.pub-cache/bin
+PATH = /opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/bs274/flutter/bin:/Users/bs274/sonar-scanner/sonar-scanner-macosx/bin:/Users/bs274/.pub-cache/bin:/Users/bs274/Downloads/file_tree_0.0.2-beta_darwin_amd64
 # environment
 GOPATH = /Users/bs274/go
-# environment
-VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
@@ -59,8 +52,6 @@ ELECTRON_RUN_AS_NODE = 1
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Ad8FjPqzvi/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /Users/bs274/go_projects/microservices-with-go/episode 1
 # environment
@@ -74,7 +65,7 @@ SONAR = /Users/bs274/sonar-scanner/sonarqube/bin/macosx-universal-64/sonar.sh
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/bs274/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = /Users/bs274/Library/Application Support/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
 LOGNAME = bs274
 # environment
@@ -108,7 +99,9 @@ TMPDIR = /var/folders/lg/9hh5tww51wsfcydm5nl8tdrh0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/bs274/Library/Application Support/Code/1.68.1-main.sock
+VSCODE_IPC_HOOK = /Users/bs274/Library/Application Support/Code/1.69.0-main.sock
+# environment
+MallocNanoZone = 0
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -116,7 +109,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.15683375.15683381
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.18931142.18931148
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -142,9 +135,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 8958
+VSCODE_PID = 67910
 # variable set hash-table stats:
-# Load=66/1024=6%, Rehash=0, Collisions=2/90=2%
+# Load=62/1024=6%, Rehash=0, Collisions=2/86=2%
 
 # Pattern-specific Variable Values
 
@@ -221,7 +214,7 @@ swagger: check_install
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jul  7 21:47:43 2022
+# Finished Make data base on Tue Jul 12 07:25:27 2022
 
  
 make: *** No rule to make target `all'.  Stop.
